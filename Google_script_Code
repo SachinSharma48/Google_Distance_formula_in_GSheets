@@ -1,0 +1,43 @@
+const GOOGLEMAPS_DISTANCE = (origin, destination, mode) => {
+  const { routes: [data] = [] } = Maps.newDirectionFinder()
+    .setOrigin(origin)
+    .setDestination(destination)
+    .setMode(mode)
+    .getDirections();
+
+  if (!data) {
+    throw new Error('No route found!');
+  }
+
+  const { legs: [{ distance: { text: distance } } = {}] = [] } = data;
+  return distance;
+};
+
+
+
+
+
+const GOOGLEMAPS_REVERSEGEOCODE = (latitude, longitude) => {
+  const { results: [data = {}] = [] } = Maps.newGeocoder().reverseGeocode(latitude, longitude);
+  return data.formatted_address;
+};
+
+
+
+const GOOGLEMAPS_PINCODE = (latitude, longitude) => {
+  const { results: [data = {}] = [] } = Maps.newGeocoder().reverseGeocode(latitude, longitude);
+  
+  if (!data) {
+    throw new Error('No results found!');
+  }
+  
+  const addressComponents = data.address_components;
+  for (let i = 0; i < addressComponents.length; i++) {
+    const types = addressComponents[i].types;
+    if (types.includes('postal_code')) {
+      return addressComponents[i].short_name;
+    }
+  }
+  
+  throw new Error('Pin code not found!');
+};
