@@ -1,4 +1,7 @@
 # Google_Distance_formula_in_GSheets
+
+Now dont pay anything to Google Matrix API use Below Code its 100% free.
+
 The Google Distance Formula uses the Google Maps API to calculate distances between addresses, ZIP codes, or coordinates. With just a custom formula, we can input the starting and ending points, and voila, the distance is automatically calculated.
 
 It's allows us to automate distance calculations between two locations directly within Google Sheets. No more manual calculations or external tools needed – it's all done seamlessly within the spreadsheet itself!
